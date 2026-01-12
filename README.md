@@ -13,7 +13,7 @@ A continuación, se listan los proyectos contenidos en este repositorio. Haz cli
 
 | Proyecto | Descripción | Nivel |
 | :--- | :--- | :--- |
-| [🚀 Proyecto 1 - Nombre](./NombreCarpeta1) | Breve descripción de lo que hace esta app (ej. Calculadora básica). | Básico |
+| [🚀 Proyecto 1 - Anfibios](./app/src/main/java/com/sharkmind/practicasotter/samples/anfibios) | Lista de anfibios recuperando datos de una API. | Intermedio |
 | [🎨 Proyecto 2 - Nombre](./NombreCarpeta2) | Uso de Views, Layouts y manejo de eventos. | Intermedio |
 | [📡 Proyecto 3 - Nombre](./NombreCarpeta3) | Consumo de una API REST usando Retrofit. | Avanzado |
 | [💾 Proyecto 4 - Nombre](./NombreCarpeta4) | Persistencia de datos con Room Database. | Intermedio |
