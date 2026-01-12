@@ -1,3 +1,5 @@
+![Portada](./img/portada_portafolio.gif")
+
 # 📱 Portafolio de Proyectos y Práctica de Aplicaciones Android
 
 ¡Bienvenido/a a este repositorio de prácticas de desarrollo Android! Este espacio busca ser un respaldo o recopilación de los proyectos y aplicaciones que se fueron construyendo mientras se exploraba el ecosistema de **Android Studio** y el lenguaje **Kotlin**.
