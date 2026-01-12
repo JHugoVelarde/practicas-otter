@@ -34,3 +34,16 @@ A continuación, se listan los proyectos contenidos en este repositorio. Haz cli
 1. Clona este repositorio:
    ```bash
    git clone https://github.com/JHugoVelarde/practicas-otter.git
+
+2. Abre Android Studio.
+
+3. Selecciona "Open" y navega hasta la carpeta del proyecto específico dentro del repositorio clonado.
+
+4. Espera a que Gradle termine de sincronizar y presiona el botón Run.
+
+## 👤 Autor
+
+J. Hugo Velarde - [Mi Perfil de GitHub]()
+
+Este repositorio está en constante actualización. ✨
+
