@@ -7,7 +7,7 @@ La aplicación obtiene los datos de un endpoint público, maneja los estados de 
 
 ## 2. Capturas
 
-<img src="/img/anfibios.png" alt="Captura_01" height="400">
+<img src="/img/anfibios_03.png" alt="Captura_01" height="400">  <img src="/img/anfibios.png" alt="Captura_01" height="400">  <img src="/img/anfibios_02.png" alt="Captura_01" height="400">    
 
 ## 3. Arquitectura
 * El proyecto sigue una arquitectura MVVM (Model-View-ViewModel), con principios de Arquitectura Limpia para separar las responsabilidades de cada capa.
@@ -21,19 +21,19 @@ La aplicación obtiene los datos de un endpoint público, maneja los estados de 
 * Network Layer (AnfibioService.kt): Se encarga de la comunicación con la API externa utilizando Retrofit.
 
 ## 4. Tecnologías y Librerías Clave
-* Jetpack Compose: Interfaz de usuario declarativa.
+* **Jetpack Compose:** Interfaz de usuario declarativa.
 
-* Hilt: Inyección de dependencias.
+* **Hilt:** Inyección de dependencias.
 
-* Retrofit: Cliente HTTP para API REST.
+* **Retrofit:** Cliente HTTP para API REST.
 
-* Kotlinx Serialization: Parseo de JSON a objetos Kotlin.
+* **Kotlinx Serialization:** Parseo de JSON a objetos Kotlin.
 
-* Coil 3: Carga asíncrona de imágenes.
+* **Coil 3:** Carga asíncrona de imágenes.
 
-* Coroutines: Gestión de tareas asíncronas y concurrencia.
+* **Coroutines:** Gestión de tareas asíncronas y concurrencia.
 
-* Lifecycle ViewModel: Persistencia de estado ante cambios de configuración.
+* **Lifecycle ViewModel:** Persistencia de estado ante cambios de configuración.
 
 ## 5. Desglose de Componentes
 
