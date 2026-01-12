@@ -5,6 +5,10 @@ Anfibios es una aplicación de Android moderna construida 100% con Kotlin y Jetp
 
 La aplicación obtiene los datos de un endpoint público, maneja los estados de la UI (Cargando, Éxito, Error) y presenta la información en una lista vertical con tarjetas interactivas.
 
+## 3. Capturas
+
+![captura_01](/img/)
+
 ## 2. Arquitectura
 El proyecto sigue el patrón MVVM (Model-View-ViewModel), aplicando principios de Clean Architecture para garantizar la separación de responsabilidades.
 
