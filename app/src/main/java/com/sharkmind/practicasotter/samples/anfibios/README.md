@@ -5,53 +5,45 @@ Anfibios es una aplicación de Android moderna construida 100% con Kotlin y Jetp
 
 La aplicación obtiene los datos de un endpoint público, maneja los estados de la UI (Cargando, Éxito, Error) y presenta la información en una lista vertical con tarjetas interactivas.
 
-## 3. Capturas
+## 2. Capturas
 
-![captura_01](/img/)
+<img src="/img/anfibios.png" alt="Captura_01" height="400">
 
-## 2. Arquitectura
-El proyecto sigue el patrón MVVM (Model-View-ViewModel), aplicando principios de Clean Architecture para garantizar la separación de responsabilidades.
+## 3. Arquitectura
+* El proyecto sigue una arquitectura MVVM (Model-View-ViewModel), con principios de Arquitectura Limpia para separar las responsabilidades de cada capa.
 
-### Flujo de Datos:
-Plaintext
+* UI Layer (View): Compuesta por funciones de Jetpack Compose (AnfibioHome.kt) que observan un estado (UiState) y reaccionan para pintar la interfaz.
 
-UI Layer (Composables)
-       ↑ ↓
-ViewModel (AnfibioVM)
-       ↑ ↓
-Repository (AnfibioRepository)
-       ↑ ↓
-Network Layer (Retrofit + AnfibioService)
-UI Layer (View): Funciones de Jetpack Compose (AnfibioHome.kt) que observan el estado (UiState) y reaccionan para pintar la interfaz.
+* ViewModel (AnfibioVM.kt): Actúa como intermediario entre la UI y la capa de datos. Solicita los datos al repositorio, los convierte en un estado de UI (AnfibioUiState) y lo expone para que la UI lo consuma.
 
-ViewModel (AnfibioVM.kt): Intermediario que solicita datos al repositorio y los transforma en estados de UI consumibles.
+* Data Layer (AnfibioRepository.kt): Abstrae el origen de los datos. Proporciona una API limpia para que el ViewModel acceda a los datos.
 
-Data Layer (AnfibioRepository.kt): Abstrae el origen de los datos, proporcionando una API limpia al ViewModel.
+* Network Layer (AnfibioService.kt): Se encarga de la comunicación con la API externa utilizando Retrofit.
 
-Network Layer (AnfibioService.kt): Gestión de comunicación externa mediante Retrofit.
+## 4. Tecnologías y Librerías Clave
+* Jetpack Compose: Interfaz de usuario declarativa.
 
-3. Tecnologías y Librerías Clave
-Jetpack Compose: Interfaz de usuario declarativa.
+* Hilt: Inyección de dependencias.
 
-Hilt: Inyección de dependencias.
+* Retrofit: Cliente HTTP para API REST.
 
-Retrofit: Cliente HTTP para API REST.
+* Kotlinx Serialization: Parseo de JSON a objetos Kotlin.
 
-Kotlinx Serialization: Parseo de JSON a objetos Kotlin.
+* Coil 3: Carga asíncrona de imágenes.
 
-Coil 3: Carga asíncrona de imágenes.
+* Coroutines: Gestión de tareas asíncronas y concurrencia.
 
-Coroutines: Gestión de tareas asíncronas y concurrencia.
+* Lifecycle ViewModel: Persistencia de estado ante cambios de configuración.
 
-Lifecycle ViewModel: Persistencia de estado ante cambios de configuración.
+## 5. Desglose de Componentes
 
-4. Desglose de Componentes
-4.1. Capa de Red (Network)
-AnfibioData.kt
-Modelo de datos para el mapeo JSON.
+### 4.1. Capa de Red (Network)
 
-Kotlin
+`AnfibioData.kt`
 
+Define el modelo de datos que se mapea desde el JSON.
+
+```
 @Serializable
 data class AnfibioData(
     val name: String,
@@ -60,20 +52,24 @@ data class AnfibioData(
     @SerialName("img_src")
     val imgSrc: String
 )
-AnfibioService.kt
+```
+
+`AnfibioService.kt`
+
 Definición de endpoints.
 
-Kotlin
-
+```
 interface AnfibioService {
     @GET("amphibians")
     suspend fun getAnfibio(): List<AnfibioData>
 }
-NetworkModule.kt
+```
+
+`NetworkModule.kt`
+
 Módulo de Hilt para proveer dependencias singleton.
 
-Kotlin
-
+```
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -91,10 +87,13 @@ object NetworkModule {
     fun provideAnfibioService(retrofit: Retrofit): AnfibioService =
         retrofit.create(AnfibioService::class.java)
 }
-4.2. Capa de Datos (Data)
-AnfibioRepository.kt
-Kotlin
+```
 
+### 4.2. Capa de Datos (Data)
+
+`AnfibioRepository.kt`
+
+```
 interface AnfibioRepository {
     suspend fun getAnfibios(): List<AnfibioData>
 }
@@ -104,10 +103,13 @@ class NetworkAnfibioRepository(
 ): AnfibioRepository {
     override suspend fun getAnfibios(): List<AnfibioData> = anfibioApiService.getAnfibio()
 }
-4.3. Capa de UI (ViewModel y View)
-AnfibioVM.kt
-Kotlin
+```
 
+### 4.3. Capa de UI (ViewModel y View)
+
+`AnfibioVM.kt`
+
+```
 sealed interface AnfibioUiState {
     data class Success(val cards: List<AnfibioData>): AnfibioUiState
     object Error: AnfibioUiState
@@ -133,9 +135,11 @@ class AnfibioVM @Inject constructor(
         }
     }
 }
-AnfibioHome.kt
-Kotlin
+```
 
+`AnfibioHome.kt`
+
+```
 @Composable
 fun AnfibioHomeScreen(appState: AnfibioUiState) {
     when (appState) {
@@ -144,12 +148,15 @@ fun AnfibioHomeScreen(appState: AnfibioUiState) {
         is AnfibioUiState.Success -> AnfibioList(listaAnfibios = appState.cards)
     }
 }
-5. Configuración del Proyecto
-AnfibioApp.kt
+```
+
+## 5. Configuración del Proyecto
+
+`AnfibioApp.kt`
+
 Punto de entrada para Hilt y configuración de Coil 3.
 
-Kotlin
-
+```
 @HiltAndroidApp
 class AnfibioApp : Application() {
     override fun onCreate() {
@@ -161,9 +168,11 @@ class AnfibioApp : Application() {
         }
     }
 }
-AndroidManifest.xml
-XML
+```
 
+`AndroidManifest.xml`
+
+```
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -173,4 +182,7 @@ XML
         ...>
         </application>
 </manifest>
-Nota: usesCleartextTraffic="true" es obligatorio si la API de pruebas utiliza el protocolo HTTP en lugar de HTTPS.
+```
+
+> [!NOTE]
+> usesCleartextTraffic="true" es obligatorio si la API de pruebas utiliza el protocolo HTTP en lugar de HTTPS.
