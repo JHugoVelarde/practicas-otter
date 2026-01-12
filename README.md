@@ -1,4 +1,4 @@
-![Portada](./img/portada_portafolio.gif")
+![Portada](/img/portada_portafolio.gif)
 
 # 📱 Portafolio de Proyectos y Práctica de Aplicaciones Android
 
